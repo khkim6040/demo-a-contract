@@ -9,7 +9,7 @@ resources:
 images:
   - name: ghcr.io/khkim6040/demo-a-platform/api
     newName: ghcr.io/khkim6040/demo-a-contract/api
-    newTag: 1.1.0
+    newTag: 0.1.0
   - name: ghcr.io/khkim6040/demo-a-platform/admin
     newName: ghcr.io/khkim6040/demo-a-contract/admin
     newTag: 0.1.0
