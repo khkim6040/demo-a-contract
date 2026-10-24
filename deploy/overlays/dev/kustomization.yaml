@@ -1,6 +1,6 @@
 apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
-namespace: demo-a-dev
+namespace: contract-dev
 resources:
   - ../../base/api
   - ../../base/admin
@@ -8,10 +8,14 @@ resources:
   - ../../base/batch
 images:
   - name: ghcr.io/khkim6040/demo-a-platform/api
+    newName: ghcr.io/khkim6040/demo-a-contract/api
     newTag: 0.1.0
   - name: ghcr.io/khkim6040/demo-a-platform/admin
+    newName: ghcr.io/khkim6040/demo-a-contract/admin
     newTag: 0.1.0
   - name: ghcr.io/khkim6040/demo-a-platform/consumer
+    newName: ghcr.io/khkim6040/demo-a-contract/consumer
     newTag: 0.1.0
   - name: ghcr.io/khkim6040/demo-a-platform/batch
+    newName: ghcr.io/khkim6040/demo-a-contract/batch
     newTag: 0.1.0
