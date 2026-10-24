@@ -38,4 +38,11 @@ class ConsumerApplicationTest {
         assertThat(handler.handle(event)).isEqualTo(HandleResult.DEAD_LETTERED)
         assertThat(handler.attemptsFor("test-2")).isEqualTo(3)
     }
+
+    @Test
+    fun `updates beneficiary from event`() {
+        val event = ContractEvent("test-3", "C-1001", ContractEventType.BENEFICIARY_CHANGED, beneficiary = "Choi")
+        assertThat(handler.handle(event)).isEqualTo(HandleResult.PROCESSED)
+        assertThat(repository.findById("C-1001").beneficiary).isEqualTo("Choi")
+    }
 }

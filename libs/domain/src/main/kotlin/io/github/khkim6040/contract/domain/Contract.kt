@@ -7,6 +7,7 @@ enum class ContractStatus { ACTIVE, SUSPENDED, EXPIRED }
 data class Contract(
     val id: String,
     val holderName: String,
+    val beneficiary: String,
     val insuredAmount: Long,
     val startDate: LocalDate,
     val endDate: LocalDate,
@@ -14,6 +15,7 @@ data class Contract(
 ) {
     init {
         require(holderName.isNotBlank()) { "holderName must not be blank" }
+        require(beneficiary.isNotBlank()) { "beneficiary must not be blank" }
         require(insuredAmount > 0) { "insuredAmount must be positive" }
         require(endDate.isAfter(startDate)) { "endDate must be after startDate" }
     }
@@ -22,6 +24,8 @@ data class Contract(
         check(status == ContractStatus.ACTIVE) { "contract $id is $status, only ACTIVE can be suspended" }
         return copy(status = ContractStatus.SUSPENDED)
     }
+
+    fun changeBeneficiary(newBeneficiary: String): Contract = copy(beneficiary = newBeneficiary)
 
     fun expireIfDue(today: LocalDate): Contract =
         if (status != ContractStatus.EXPIRED && !endDate.isAfter(today)) copy(status = ContractStatus.EXPIRED) else this

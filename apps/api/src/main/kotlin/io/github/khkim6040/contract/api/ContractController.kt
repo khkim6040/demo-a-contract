@@ -16,6 +16,7 @@ import java.util.UUID
 
 data class CreateContractRequest(
     val holderName: String,
+    val beneficiary: String,
     val insuredAmount: Long,
     val startDate: LocalDate,
     val endDate: LocalDate,
@@ -36,6 +37,7 @@ class ContractController(
             Contract(
                 id = UUID.randomUUID().toString(),
                 holderName = request.holderName,
+                beneficiary = request.beneficiary,
                 insuredAmount = request.insuredAmount,
                 startDate = request.startDate,
                 endDate = request.endDate,

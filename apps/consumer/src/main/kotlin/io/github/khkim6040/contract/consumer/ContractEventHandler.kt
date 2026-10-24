@@ -41,6 +41,8 @@ class ContractEventHandler(
             ContractEventType.CREATED -> repository.findById(event.contractId)
             ContractEventType.SUSPENDED -> repository.save(repository.findById(event.contractId).suspend())
             ContractEventType.EXPIRED -> repository.save(repository.findById(event.contractId).expireIfDue(LocalDate.now()))
+            ContractEventType.BENEFICIARY_CHANGED ->
+                repository.save(repository.findById(event.contractId).changeBeneficiary(requireNotNull(event.beneficiary)))
         }
     }
 }
