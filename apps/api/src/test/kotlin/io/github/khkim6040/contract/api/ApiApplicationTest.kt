@@ -65,5 +65,6 @@ class ApiApplicationTest {
         assertThat(quote).hasStatusOk()
         assertThat(quote).bodyJson().extractingPath("$.monthlyPremium").isEqualTo(10000)
         assertThat(quote).bodyJson().extractingPath("$.quotedPremium").isEqualTo(15000)
+        assertThat(quote).bodyJson().extractingPath("$.rate").isEqualTo(1.5)
     }
 }

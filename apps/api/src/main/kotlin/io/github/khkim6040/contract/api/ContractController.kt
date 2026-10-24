@@ -22,7 +22,7 @@ data class CreateContractRequest(
     val endDate: LocalDate,
 )
 
-data class QuoteResponse(val contractId: String, val monthlyPremium: Long, val quotedPremium: Long)
+data class QuoteResponse(val contractId: String, val monthlyPremium: Long, val quotedPremium: Long, val rate: Double)
 
 @RestController
 @RequestMapping("/contracts")
@@ -52,6 +52,6 @@ class ContractController(
         val contract = repository.findById(id)
         val premium = PremiumCalculator.monthlyPremium(contract)
         val rate = quoteClient.currentRate()
-        return QuoteResponse(contract.id, premium, (premium * rate).toLong())
+        return QuoteResponse(contract.id, premium, (premium * rate).toLong(), rate)
     }
 }
