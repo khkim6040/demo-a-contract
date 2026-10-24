@@ -8,8 +8,19 @@ import kotlin.test.assertSame
 
 class ContractTest {
     private val today = LocalDate.of(2026, 10, 24)
-    private fun contract(end: LocalDate = today.plusYears(1), amount: Long = 10_000_000) =
-        Contract("C-1", "Kim", amount, today.minusDays(30), end)
+    private fun contract(end: LocalDate = today.plusYears(1), amount: Long = 10_000_000, beneficiary: String = "Park") =
+        Contract("C-1", "Kim", beneficiary, amount, today.minusDays(30), end)
+
+    @Test
+    fun `rejects blank beneficiary`() {
+        assertFailsWith<IllegalArgumentException> { contract(beneficiary = " ") }
+    }
+
+    @Test
+    fun `changes beneficiary`() {
+        assertEquals("Choi", contract().changeBeneficiary("Choi").beneficiary)
+        assertFailsWith<IllegalArgumentException> { contract().changeBeneficiary("") }
+    }
 
     @Test
     fun `rejects non-positive insured amount`() {

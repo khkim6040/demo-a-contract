@@ -21,7 +21,7 @@ class ApiApplicationTest {
     @MockitoBean lateinit var quoteClient: QuoteClient
 
     private val validBody = """
-        {"holderName":"Kim","insuredAmount":10000000,"startDate":"2026-01-01","endDate":"2027-01-01"}
+        {"holderName":"Kim","beneficiary":"Park","insuredAmount":10000000,"startDate":"2026-01-01","endDate":"2027-01-01"}
     """.trimIndent()
 
     @Test
@@ -39,6 +39,7 @@ class ApiApplicationTest {
         val read = mvc.get().uri("/contracts/{id}", id).exchange()
         assertThat(read).hasStatusOk()
         assertThat(read).bodyJson().extractingPath("$.holderName").isEqualTo("Kim")
+        assertThat(read).bodyJson().extractingPath("$.beneficiary").isEqualTo("Park")
     }
 
     @Test
