@@ -3,7 +3,6 @@ import org.springframework.boot.gradle.tasks.bundling.BootJar
 plugins {
     id("platform.kotlin-library")
     id("org.springframework.boot")
-    id("org.jetbrains.kotlin.plugin.spring")
 }
 
 dependencies {
