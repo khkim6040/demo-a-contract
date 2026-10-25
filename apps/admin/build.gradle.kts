@@ -5,6 +5,7 @@ plugins {
 dependencies {
     implementation(project(":libs:domain"))
     implementation(project(":platform:http-starter"))
+    implementation(project(":platform:observability-starter"))
 
     testImplementation("org.springframework.boot:spring-boot-starter-webmvc-test")
 }
