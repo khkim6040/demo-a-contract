@@ -5,6 +5,8 @@ Insurance platform PoC, A안(Fork + Upstream Merge)의 플랫폼 레포이자 �
 - `apps/{api,admin,consumer,batch}`: 독립 실행·배포되는 네 앱 (api 8080, admin 8081, consumer·batch는 웹 서버 없음)
 - `libs/domain`: Spring에 의존하지 않는 계약 도메인
 - `platform/http-starter`: Correlation ID, ProblemDetail, 기본 프로퍼티를 제공하는 스타터
+- `platform/observability-starter`: Actuator, Prometheus, OpenTelemetry tracing 기본값
+- `platform/resilience-starter`: Resilience4j Circuit Breaker·Retry 기본값
 - `build-logic`: 컨벤션 플러그인 `platform.kotlin-library`, `platform.spring-boot-app`
 - `deploy/`: Kustomize (`base`는 플랫폼 소유, `overlays`는 프로젝트 소유)
 
